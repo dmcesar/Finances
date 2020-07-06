@@ -65,7 +65,7 @@ public class UserServiceTest {
         User user = User.builder()
                 .email(email)
                 .password(password)
-                .id(1)
+                .id((long) 1)
                 .build();
 
         Mockito.when(repository.findByEmail(email)).thenReturn(Optional.of(user));
@@ -97,7 +97,7 @@ public class UserServiceTest {
         User user = User.builder()
                 .email(email)
                 .password(password)
-                .id(1)
+                .id((long) 1)
                 .build();
 
         Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.of(user));
@@ -114,7 +114,7 @@ public class UserServiceTest {
 
         /* Persisted user to be returned */
         User user = User.builder()
-                .id(1)
+                .id((long) 1)
                 .email("test.user@email.com")
                 .name("user")
                 .password("abc123")

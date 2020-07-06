@@ -14,21 +14,23 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 @Table(name = "entry", schema = "finances")
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Entry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@Column(name = "description")
 	private String description;
 	
 	@Column(name = "month")
-	private int month;
+	private Integer month;
 	
 	@Column(name = "year")
-	private int year;
+	private Integer year;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_user")
