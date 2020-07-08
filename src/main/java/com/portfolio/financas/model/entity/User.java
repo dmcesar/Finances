@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
@@ -33,6 +34,7 @@ public class User {
 	private String email;
 	
 	@Column(name = "password")
+	@JsonIgnore /* Do not convert to json */
 	private String password;
 
 	@Column(name = "registry_date")

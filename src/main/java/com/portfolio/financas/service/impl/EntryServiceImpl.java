@@ -46,11 +46,11 @@ public class EntryServiceImpl implements EntryService {
     @Transactional
     public Entry update(Entry entry) {
 
-        /* Validate form entry */
-        validate(entry);
-
         /* Given entry must have an ID (must already be persisted in DB) or NPE is thrown  */
         Objects.requireNonNull(entry.getId());
+
+        /* Validate form entry */
+        validate(entry);
 
         /* Persist entry */
         return repository.save(entry);
