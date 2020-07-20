@@ -136,8 +136,8 @@ public class EntryServiceImpl implements EntryService {
     @Transactional(readOnly = true)
     public BigDecimal getUserBalance(Long id) {
 
-        BigDecimal revenue = repository.getValueByUserAndEntryType(id, EntryType.REVENUE);
-        BigDecimal expenses = repository.getValueByUserAndEntryType(id, EntryType.EXPENSE);
+        BigDecimal revenue = repository.getValueByUserAndEntryTypeAndStatus(id, EntryType.REVENUE, EntryStatus.EFFECTED);
+        BigDecimal expenses = repository.getValueByUserAndEntryTypeAndStatus(id, EntryType.EXPENSE, EntryStatus.EFFECTED);
 
         if(revenue == null) {
 

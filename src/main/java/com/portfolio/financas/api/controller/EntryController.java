@@ -107,7 +107,7 @@ public class EntryController {
 
         filterEntry.setUser(user.get());
 
-        List<Entry> entries =  entryService.read(filterEntry);
+        List<Entry> entries = entryService.read(filterEntry);
 
         return ResponseEntity.ok(entries);
     }
@@ -152,7 +152,31 @@ public class EntryController {
         } ).orElseGet(() -> new ResponseEntity("Entry not found.", HttpStatus.BAD_REQUEST));
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity getEntryByID( @PathVariable("id") Long id) {
+
+        return this.entryService.getByID(id)
+                .map( (entry) -> new ResponseEntity(toDTO(entry), HttpStatus.OK) )
+                .orElseGet( () -> new ResponseEntity(HttpStatus.NOT_FOUND) );
+    }
+
+    private EntryDTO toDTO(Entry entry) {
+
+        return EntryDTO.builder()
+                .id(entry.getId())
+                .description(entry.getDescription())
+                .value(entry.getValue())
+                .month(entry.getMonth())
+                .year(entry.getYear())
+                .status(entry.getStatus().name())
+                .type(entry.getType().name())
+                .user(entry.getUser().getId())
+                .build();
+    }
+
     private Entry toEntry(EntryDTO dto) {
+
+        System.out.println(dto);
 
         return Entry.builder()
                 .description(dto.getDescription())
